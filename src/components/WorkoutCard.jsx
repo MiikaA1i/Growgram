@@ -89,7 +89,7 @@ export default function WorkoutCard(props) {
                             <p className="exercise-info">{workoutExercise.reps}</p>
                             <input value={weights[workoutExercise.name] || ''} onChange={(e) => {
                                 handleAddWeight(workoutExercise.name, e.target.value)
-                            }} className="weight-input" placeholder="14" />
+                            }} className="weight-input" placeholder="Enter weight" />
                         </React.Fragment>
                     )
                 })}

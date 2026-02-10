@@ -5,7 +5,7 @@ export default function Layouts(props){
     const header = (
         <header>
                 <h1 className="text-gradient">The Growgram</h1>
-                <p><strong>Grow your muscles, grow your knowledge, This is the 30 simple workouts program</strong></p>
+                <p><strong>Tone your body. Grow your strength. Expand your limits.</strong></p>
         </header>
     )
 

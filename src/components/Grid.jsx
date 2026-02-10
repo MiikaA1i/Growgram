@@ -34,8 +34,8 @@ export default function Grid() {
     useEffect(() => {
         if (!localStorage) { return }
         let savedData = {}
-        if (localStorage.getItem('brogram')) {
-            savedData = JSON.parse(localStorage.getItem('brogram'))
+        if (localStorage.getItem('growgram')) {
+            savedData = JSON.parse(localStorage.getItem('growgram'))
         }
         setSavedWorkouts(savedData)
     }, [])

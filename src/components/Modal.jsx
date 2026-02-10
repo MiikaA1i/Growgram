@@ -1,17 +1,19 @@
-import ReactDom from "react-dom"
+import ReactDOM from "react-dom"
 
 export default function Modal(props){
-    
-    const {showExcerciseDescription, handleCloseModal} = props
-    const {name, description} = showExcerciseDescription || {}
+    const { showExerciseDescription, handleCloseModal } = props
+    const { name, description } = showExerciseDescription || {}
 
-    return ReactDom.createPortal((
+    const safeName = (name || '').replaceAll ? (name || '').replaceAll('-','') : (name || '')
+
+    return ReactDOM.createPortal(
+        (
         <div className='modal-container'>
-            <button className='model-underlay' onClick={handleCloseModal}/>
+            <button className='modal-underlay' onClick={handleCloseModal} />
             <div className='modal-content'>
                 <div>
                     <h6>Name</h6>
-                    <h2 className='skill-name'>{name.replaceAll('-','')}</h2>
+                    <h2 className='skill-name'>{safeName}</h2>
                 </div>
 
                 <div>
@@ -19,12 +21,8 @@ export default function Modal(props){
                     <p>{description}</p>
                 </div>
             </div>
-            
         </div>
-    ),
-
-    (document.getElementById('portal'))
-    
+        ),
+        document.getElementById('portal')
     )
-
 }
