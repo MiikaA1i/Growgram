@@ -4,13 +4,13 @@ export default function Hero(){
            <h5>Complete this training program if you want to...</h5> 
            <ol className="benefits-list">
                 <li>Follow a simple program with guaranteed results</li>
-                <li>Get Fit, Healthy , strong and shredded</li>
-                <li>Learn more</li>
-                <li>Become a lifetime gym girl</li>
+                <li>Get Fit, healthy and strong</li>
+                <li>Learn more about the GROW SPLIT training method</li>
+                <li>Become a lifetime gym goer</li>
            </ol>
 
            <h3>The Rules</h3>
-           <p>To complete this program, you <b>MUST</b> follow these 3 simple ryles:</p>
+           <p>To complete this program, you <b>MUST</b> follow these 3 simple rules:</p>
            <ul className="rules-list">
             <div className='rule-item'>
                 <p><b>Rest</b></p>
@@ -29,8 +29,8 @@ export default function Hero(){
             </div>
         </ul>
         <small>*The first and second set should be at 7775% and 85% of you working weight used for the last two sets. </small>
-        <h3>the training plan</h3>
-        <p>this training plan uses the structure known as the <b>GROW SPLIT</b>, and follows this rotation:</p>
+        <h3>The Training Plan</h3>
+        <p>This training plan uses the structure known as the <b>GROW SPLIT</b>, and follows this rotation:</p>
         <p><b><i>Push &rarr; Pull &rarr; Legs &rarr; Repeat</i></b></p>
         <p>Complete all of the workouts and track your progress along the way!</p>
         </>
