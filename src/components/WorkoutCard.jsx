@@ -100,9 +100,11 @@ export default function WorkoutCard(props) {
                 <button onClick={() => {
                     handleSave(workoutIndex, { weights })
                 }}>Save & Exit</button>
-                <button onClick={() => {
-                    handleComplete(workoutIndex, { weights })
-                }} disabled={Object.keys(weights).length !== workout.length}>Complete</button>
+                {workoutIndex !== 29 && (
+                    <button onClick={() => {
+                        handleComplete(workoutIndex, { weights })
+                    }} disabled={Object.keys(weights).length !== workout.length}>Complete</button>
+                )}
             </div>
         </div>
     )

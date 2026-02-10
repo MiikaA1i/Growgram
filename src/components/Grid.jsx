@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import { workoutProgram as training_plan } from '../utils/index.js'
 import WorkoutCard from './WorkoutCard.jsx'
+import CongratsModal from './CongratsModal.jsx'
 
 export default function Grid() {
+
+    const [showCongrats, setShowCongrats] = useState(false); 
     const [savedWorkouts, setSavedWorkouts] = useState(null)
     const [selectedWorkout, setSelectedWorkout] = useState(null)
     const completedWorkouts = Object.keys(savedWorkouts || {}).filter((val) => {
@@ -22,6 +25,10 @@ export default function Grid() {
         setSavedWorkouts(newObj)
         localStorage.setItem('growgram', JSON.stringify(newObj))
         setSelectedWorkout(null)
+
+          if (index === 29) {
+            setShowCongrats(true);
+          }
     }
 
     function handleComplete(index, data) {
@@ -29,6 +36,20 @@ export default function Grid() {
         const newObj = { ...data }
         newObj.isComplete = true
         handleSave(index, newObj)
+    }
+
+    function handleRetry() {
+        localStorage.removeItem('growgram')
+        setSavedWorkouts({})
+        setSelectedWorkout(0)
+        setShowCongrats(false)
+    }
+
+    function handleSaveAllUnlocked() {
+        const newObj = { ...(savedWorkouts || {}), __keepUnlocked: true }
+        setSavedWorkouts(newObj)
+        localStorage.setItem('growgram', JSON.stringify(newObj))
+        setShowCongrats(false)
     }
 
     useEffect(() => {
@@ -43,9 +64,7 @@ export default function Grid() {
     return (
         <div className="training-plan-grid">
             {Object.keys(training_plan).map((workout, workoutIndex) => {
-                const isLocked = workoutIndex === 0 ?
-                    false :
-                    !completedWorkouts.includes(`${workoutIndex - 1}`)
+                const isLocked = workoutIndex === 0 ? false : !(savedWorkouts?.__keepUnlocked || completedWorkouts.includes(`${workoutIndex - 1}`))
                 console.log(workoutIndex, isLocked)
 
                 const type = workoutIndex % 3 === 0 ?
@@ -90,6 +109,9 @@ export default function Grid() {
                     </button>
                 )
             })}
+            {showCongrats && (
+                <CongratsModal onRetry={handleRetry} onSave={handleSaveAllUnlocked} onClose={() => setShowCongrats(false)} />
+            )}
         </div>
     )
 }
