@@ -20,7 +20,7 @@ export default function Grid() {
             }
         }
         setSavedWorkouts(newObj)
-        localStorage.setItem('brogram', JSON.stringify(newObj))
+        localStorage.setItem('growgram', JSON.stringify(newObj))
         setSelectedWorkout(null)
     }
 
