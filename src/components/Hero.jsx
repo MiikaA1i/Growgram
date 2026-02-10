@@ -4,7 +4,7 @@ export default function Hero(){
            <h5>Complete this training program if you want to...</h5> 
            <ol className="benefits-list">
                 <li>Follow a simple program with guaranteed results</li>
-                <li>Get Fit, healthy and strong</li>
+                <li>Get fit, healthy and strong</li>
                 <li>Learn more about the GROW SPLIT training method</li>
                 <li>Become a lifetime gym goer 😝</li>
            </ol>
