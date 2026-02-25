@@ -4,11 +4,35 @@ import { exerciseDescriptions } from "../utils"
 
 export default function WorkoutCard(props) {
     const { trainingPlan, workoutIndex, type, dayNum, icon, savedWeights, handleSave, handleComplete } = props
-
+    const [unit, setUnit] = useState("kg");
     const { warmup, workout } = trainingPlan || {}
     const [showExerciseDescription, setShowExerciseDescription] = useState(null)
     const [weights, setWeights] = useState(savedWeights || {})
 
+    function convertValue(value, fromUnit) {
+    if (!value) return ''
+
+    const num = parseFloat(value)
+    if (isNaN(num)) return ''
+
+    if (fromUnit === "kg") {
+        return (num * 2.20462).toFixed(1) // kg → lbs
+    } else {
+        return (num / 2.20462).toFixed(1) // lbs → kg
+    }
+}
+    function handleToggleUnit() {
+    const newUnit = unit === "kg" ? "lbs" : "kg"
+
+    const convertedWeights = {}
+
+    Object.keys(weights).forEach((key) => {
+        convertedWeights[key] = convertValue(weights[key], unit)
+    })
+
+    setWeights(convertedWeights)
+    setUnit(newUnit)
+}
     function handleAddWeight(title, weight) {
         const newObj = {
             ...weights,
@@ -16,6 +40,7 @@ export default function WorkoutCard(props) {
         }
         setWeights(newObj)
     }
+
 
     return (
         <div className="workout-container">
@@ -41,7 +66,9 @@ export default function WorkoutCard(props) {
                 </div>
                 <h6>Sets</h6>
                 <h6>Reps</h6>
-                <h6 className="weight-input">Max Weight</h6>
+                <h6 className="weight-input flex items-center gap-2">Max Weight ({unit})
+                    <button type="button" onClick={handleToggleUnit} className="unit-toggle-btn">⇄</button>
+                </h6>
                 {warmup.map((warmupExercise, warmupIndex) => {
                     return (
                         <React.Fragment key={warmupIndex}>
@@ -70,7 +97,9 @@ export default function WorkoutCard(props) {
                 </div>
                 <h6>Sets</h6>
                 <h6>Reps</h6>
-                <h6 className="weight-input">Max Weight</h6>
+                <h6 className="weight-input flex items-center gap-2">Max Weight ({unit})
+                    <button type="button" onClick={handleToggleUnit} className="unit-toggle-btn">⇄</button>
+                </h6>
                 {workout.map((workoutExercise, wIndex) => {
                     return (
                         <React.Fragment key={wIndex}>
@@ -89,7 +118,7 @@ export default function WorkoutCard(props) {
                             <p className="exercise-info">{workoutExercise.reps}</p>
                             <input value={weights[workoutExercise.name] || ''} onChange={(e) => {
                                 handleAddWeight(workoutExercise.name, e.target.value)
-                            }} className="weight-input" placeholder="Enter weight" />
+                            }} className="weight-input" placeholder="Enter weight" type="number" />
                         </React.Fragment>
                     )
                 })}

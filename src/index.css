@@ -279,3 +279,13 @@ button.help-icon:hover {
 .modal-content.congrats {
     overflow: visible;
 }
+
+.unit-toggle-btn {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    
+}
