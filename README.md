@@ -1,5 +1,7 @@
-# Growgram
+# The Growgram
 The Simple 30 Workouts Training Plan | Built with ReactJS & FantaCSS
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
